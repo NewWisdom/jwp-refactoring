@@ -2,6 +2,7 @@ package kitchenpos.menu.domain;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,7 +18,7 @@ public class Menu {
     @Embedded
     private MenuPrice price;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Long menuGroupId;
 
     @Embedded
@@ -26,17 +27,12 @@ public class Menu {
     protected Menu() {
     }
 
-    public Menu(String name, BigDecimal price) {
-        this(name, new MenuPrice(price));
-    }
-
-    public Menu(String name, MenuPrice price) {
-        this.name = name;
-        this.price = price;
-    }
-
     public Menu(String name, BigDecimal price, Long menuGroupId) {
-        this(name, new MenuPrice(price), menuGroupId, new MenuProducts());
+        this(name, price, menuGroupId, new ArrayList<>());
+    }
+
+    public Menu(String name, BigDecimal price, Long menuGroupId, List<MenuProduct> menuProducts) {
+        this(name, new MenuPrice(price), menuGroupId, new MenuProducts(menuProducts));
     }
 
     public Menu(String name, MenuPrice price, Long menuGroupId, MenuProducts menuProducts) {
@@ -44,13 +40,6 @@ public class Menu {
         this.price = price;
         this.menuGroupId = menuGroupId;
         this.menuProducts = menuProducts;
-    }
-
-    public void changeMenuProducts(List<MenuProduct> menuProducts) {
-        for (MenuProduct menuProduct : menuProducts) {
-            menuProduct.changeMenu(this);
-        }
-        this.menuProducts = MenuProducts.of(price.getPrice(), menuProducts);
     }
 
     public Long getId() {

@@ -1,8 +1,8 @@
 package kitchenpos;
 
 import kitchenpos.menu.domain.Menu;
-import kitchenpos.menugroup.domain.MenuGroup;
 import kitchenpos.menu.domain.MenuProduct;
+import kitchenpos.menugroup.domain.MenuGroup;
 import kitchenpos.product.domain.Product;
 
 import java.math.BigDecimal;
@@ -19,21 +19,17 @@ public class MenuFixture {
     public static final long MENU_QUANTITY = 1;
 
     public static Menu createMenu1(MenuGroup menuGroup, List<Product> products) {
-        Menu menu = new Menu(MENU_NAME1, MENU_PRICE, menuGroup.getId());
         List<MenuProduct> menuProducts = products.stream()
                 .map(it -> new MenuProduct(it.getId(), MENU_QUANTITY))
                 .collect(Collectors.toList());
-        menu.changeMenuProducts(menuProducts);
-        return menu;
+        return new Menu(MENU_NAME1, MENU_PRICE, menuGroup.getId(), menuProducts);
     }
 
     public static Menu createMenu2(MenuGroup menuGroup, List<Product> products) {
-        Menu menu = new Menu(MENU_NAME2, MENU_PRICE, menuGroup.getId());
         List<MenuProduct> menuProducts = products.stream()
                 .map(it -> new MenuProduct(it.getId(), MENU_QUANTITY))
                 .collect(Collectors.toList());
-        menu.changeMenuProducts(menuProducts);
-        return menu;
+        return new Menu(MENU_NAME2, MENU_PRICE, menuGroup.getId(), menuProducts);
     }
 
     public static MenuProduct createMenuProduct(Product product) {

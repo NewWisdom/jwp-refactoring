@@ -37,9 +37,8 @@ public class MenuService {
     public MenuResponse create(final MenuRequest request) {
         final MenuGroup menuGroup = menuGroupRepository.findById(request.getMenuGroupId())
                 .orElseThrow(() -> new NoSuchElementException("해당 메뉴 그룹이 존재하지 않습니다. id: " + request.getMenuGroupId()));
-        final Menu menu = new Menu(request.getName(), request.getPrice(), menuGroup.getId());
         final List<MenuProduct> menuProducts = getMenuProducts(request);
-        menu.changeMenuProducts(menuProducts);
+        final Menu menu = new Menu(request.getName(), request.getPrice(), menuGroup.getId(), menuProducts);
         final Menu savedMenu = menuRepository.save(menu);
         return MenuResponse.of(savedMenu);
     }

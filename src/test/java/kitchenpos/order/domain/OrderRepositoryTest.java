@@ -34,23 +34,22 @@ class OrderRepositoryTest {
     @Test
     void existsByOrderTableAndOrderStatusIn() {
         final MenuGroup menuGroup1 = createMenuGroup1();
+        em.persist(menuGroup1);
         final Product product1 = createProduct1();
+        em.persist(product1);
         final Menu menu = createMenu1(menuGroup1, Collections.singletonList(product1));
+        em.persist(menu);
         final OrderTable orderTable1 = createOrderTable();
+        em.persist(orderTable1);
         final OrderTable orderTable2 = createOrderTable();
+        em.persist(orderTable2);
         final OrderLineItem orderLineItem = createOrderLineItem(menu);
         final Order order = createOrder(orderTable1, Collections.singletonList(orderLineItem));
-
-        em.persist(menuGroup1);
-        em.persist(product1);
-        em.persist(menu);
-        em.persist(orderTable1);
-        em.persist(orderTable2);
         em.persist(order);
         em.flush();
 
-        final boolean isExist = orderRepository.existsByOrderTableAndOrderStatusIn(orderTable1, Collections.singletonList(order.getOrderStatus()));
-        final boolean isNotExist = orderRepository.existsByOrderTableAndOrderStatusIn(orderTable2, Collections.singletonList(OrderStatus.COOKING));
+        final boolean isExist = orderRepository.existsByOrderTableIdAndOrderStatusIn(orderTable1.getId(), Collections.singletonList(order.getOrderStatus()));
+        final boolean isNotExist = orderRepository.existsByOrderTableIdAndOrderStatusIn(orderTable2.getId(), Collections.singletonList(OrderStatus.COOKING));
 
         assertThat(isExist).isTrue();
         assertThat(isNotExist).isFalse();
@@ -60,23 +59,22 @@ class OrderRepositoryTest {
     @Test
     void existsByOrderTableInAndOrderStatusIn() {
         final MenuGroup menuGroup1 = createMenuGroup1();
+        em.persist(menuGroup1);
         final Product product1 = createProduct1();
+        em.persist(product1);
         final Menu menu = createMenu1(menuGroup1, Collections.singletonList(product1));
+        em.persist(menu);
         final OrderTable orderTable1 = createOrderTable();
+        em.persist(orderTable1);
         final OrderTable orderTable2 = createOrderTable();
+        em.persist(orderTable2);
         final OrderLineItem orderLineItem = createOrderLineItem(menu);
         final Order order = createOrder(orderTable1, Collections.singletonList(orderLineItem));
-
-        em.persist(menuGroup1);
-        em.persist(product1);
-        em.persist(menu);
-        em.persist(orderTable1);
-        em.persist(orderTable2);
         em.persist(order);
         em.flush();
 
-        final boolean isExist = orderRepository.existsByOrderTableInAndOrderStatusIn(
-                Arrays.asList(orderTable1, orderTable2), Collections.singletonList(order.getOrderStatus()));
+        final boolean isExist = orderRepository.existsByOrderTableIdInAndOrderStatusIn(
+                Arrays.asList(orderTable1.getId(), orderTable2.getId()), Collections.singletonList(order.getOrderStatus()));
 
         assertThat(isExist).isTrue();
     }

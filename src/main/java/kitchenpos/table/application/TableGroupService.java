@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Arrays;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 @Service
 public class TableGroupService {
@@ -42,9 +43,11 @@ public class TableGroupService {
     public void ungroup(final Long tableGroupId) {
         final TableGroup tableGroup = tableGroupRepository.findById(tableGroupId)
                 .orElseThrow(() -> new NoSuchElementException("해당 단체 지정이 존재하지 않습니다. id: " + tableGroupId));
-        final List<OrderTable> orderTables = tableGroup.getOrderTables();
-        if (orderRepository.existsByOrderTableInAndOrderStatusIn(
-                orderTables, Arrays.asList(OrderStatus.COOKING, OrderStatus.MEAL))) {
+        final List<Long> orderTableIds = tableGroup.getOrderTables().stream()
+                .map(OrderTable::getId)
+                .collect(Collectors.toList());
+        if (orderRepository.existsByOrderTableIdInAndOrderStatusIn(
+                orderTableIds, Arrays.asList(OrderStatus.COOKING, OrderStatus.MEAL))) {
             throw new IllegalArgumentException("조리, 식사 상태의 주문을 가진 주문 테이블을 포함한 경우 해제할 수 없습니다.");
         }
         tableGroup.ungroup();
