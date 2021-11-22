@@ -92,7 +92,7 @@ class MenuServiceTest extends EntityManagerSupport {
                     () -> assertThat(actual.getId()).isNotNull(),
                     () -> assertThat(actual.getName()).isEqualTo(MENU_NAME1),
                     () -> assertThat(actual.getPrice()).isEqualTo(MENU_PRICE),
-                    () -> assertThat(actual.getMenuGroup().getName()).isEqualTo(menuGroup1.getName()),
+                    () -> assertThat(actual.getMenuGroupId()).isEqualTo(menuGroup1.getId()),
                     () -> assertThat(actual.getMenuProducts()).hasSize(2)
             );
         }

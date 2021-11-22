@@ -37,7 +37,7 @@ public class MenuService {
     public MenuResponse create(final MenuRequest request) {
         final MenuGroup menuGroup = menuGroupRepository.findById(request.getMenuGroupId())
                 .orElseThrow(() -> new NoSuchElementException("해당 메뉴 그룹이 존재하지 않습니다. id: " + request.getMenuGroupId()));
-        final Menu menu = new Menu(request.getName(), request.getPrice(), menuGroup);
+        final Menu menu = new Menu(request.getName(), request.getPrice(), menuGroup.getId());
         final List<MenuProduct> menuProducts = getMenuProducts(request);
         menu.changeMenuProducts(menuProducts);
         final Menu savedMenu = menuRepository.save(menu);
@@ -54,7 +54,7 @@ public class MenuService {
     private MenuProduct getMenuProduct(MenuProductRequest request) {
         final Product product = productRepository.findById(request.getProductId())
                 .orElseThrow(() -> new NoSuchElementException("해당 상품이 존재하지 않습니다. id: " + request.getProductId()));
-        return new MenuProduct(product, request.getQuantity());
+        return new MenuProduct(product.getId(), request.getQuantity());
     }
 
     @Transactional(readOnly = true)

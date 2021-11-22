@@ -1,10 +1,10 @@
 package kitchenpos;
 
-import kitchenpos.table.domain.OrderTable;
 import kitchenpos.menu.domain.Menu;
 import kitchenpos.order.domain.Order;
 import kitchenpos.order.domain.OrderLineItem;
 import kitchenpos.order.domain.OrderStatus;
+import kitchenpos.table.domain.OrderTable;
 
 import java.util.List;
 
@@ -20,16 +20,12 @@ public class OrderFixture {
     }
 
     public static Order createOrder(OrderTable orderTable, OrderStatus orderStatus, List<OrderLineItem> orderLineItems) {
-        Order order = new Order(orderTable, orderStatus);
+        Order order = new Order(orderTable.getId(), orderStatus);
         order.changeOrderLineItems(orderLineItems);
         return order;
     }
 
     public static OrderLineItem createOrderLineItem(Menu menu) {
         return new OrderLineItem(menu, ORDER_LINE_QUANTITY);
-    }
-
-    public static OrderLineItem createOrderLineItem(Order order, Menu menu) {
-        return new OrderLineItem(order, menu, ORDER_LINE_QUANTITY);
     }
 }

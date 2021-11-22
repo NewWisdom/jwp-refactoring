@@ -3,14 +3,14 @@ package kitchenpos.order.application;
 import kitchenpos.EntityManagerSupport;
 import kitchenpos.menu.domain.Menu;
 import kitchenpos.menugroup.domain.MenuGroup;
-import kitchenpos.order.domain.Order;
-import kitchenpos.order.domain.OrderStatus;
-import kitchenpos.table.domain.OrderTable;
-import kitchenpos.product.domain.Product;
 import kitchenpos.order.application.dto.OrderLineItemsRequest;
 import kitchenpos.order.application.dto.OrderRequest;
 import kitchenpos.order.application.dto.OrderResponse;
 import kitchenpos.order.application.dto.OrderStatusRequest;
+import kitchenpos.order.domain.Order;
+import kitchenpos.order.domain.OrderStatus;
+import kitchenpos.product.domain.Product;
+import kitchenpos.table.domain.OrderTable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -21,7 +21,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static kitchenpos.MenuFixture.*;
+import static kitchenpos.MenuFixture.createMenu1;
+import static kitchenpos.MenuFixture.createMenu2;
 import static kitchenpos.MenuGroupFixture.createMenuGroup1;
 import static kitchenpos.MenuGroupFixture.createMenuGroup2;
 import static kitchenpos.OrderFixture.createOrder;
@@ -95,7 +96,7 @@ class OrderServiceTest extends EntityManagerSupport {
                     () -> assertThat(actual.getId()).isNotNull(),
                     () -> assertThat(actual.getOrderStatus()).isEqualTo(OrderStatus.COOKING.name()),
                     () -> assertThat(actual.getOrderedTime()).isNotNull(),
-                    () -> assertThat(actual.getOrderTable().getId()).isNotNull(),
+                    () -> assertThat(actual.getOrderTableId()).isNotNull(),
                     () -> assertThat(actual.getOrderLineItems()).hasSize(1)
             );
         }

@@ -2,6 +2,7 @@ package kitchenpos.menu.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -10,7 +11,8 @@ import java.util.List;
 @Embeddable
 public class MenuProducts {
 
-    @OneToMany(mappedBy = "menu", cascade = CascadeType.PERSIST)
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name="menu_id")
     private List<MenuProduct> menuProducts = new ArrayList<>();
 
     public MenuProducts() {

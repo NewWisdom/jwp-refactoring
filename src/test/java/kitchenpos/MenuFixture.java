@@ -19,24 +19,24 @@ public class MenuFixture {
     public static final long MENU_QUANTITY = 1;
 
     public static Menu createMenu1(MenuGroup menuGroup, List<Product> products) {
-        Menu menu = new Menu(MENU_NAME1, MENU_PRICE, menuGroup);
+        Menu menu = new Menu(MENU_NAME1, MENU_PRICE, menuGroup.getId());
         List<MenuProduct> menuProducts = products.stream()
-                .map(it -> new MenuProduct(it, MENU_QUANTITY))
+                .map(it -> new MenuProduct(it.getId(), MENU_QUANTITY))
                 .collect(Collectors.toList());
         menu.changeMenuProducts(menuProducts);
         return menu;
     }
 
     public static Menu createMenu2(MenuGroup menuGroup, List<Product> products) {
-        Menu menu = new Menu(MENU_NAME2, MENU_PRICE, menuGroup);
+        Menu menu = new Menu(MENU_NAME2, MENU_PRICE, menuGroup.getId());
         List<MenuProduct> menuProducts = products.stream()
-                .map(it -> new MenuProduct(it, MENU_QUANTITY))
+                .map(it -> new MenuProduct(it.getId(), MENU_QUANTITY))
                 .collect(Collectors.toList());
         menu.changeMenuProducts(menuProducts);
         return menu;
     }
 
     public static MenuProduct createMenuProduct(Product product) {
-        return new MenuProduct(product, MENU_QUANTITY);
+        return new MenuProduct(product.getId(), MENU_QUANTITY);
     }
 }

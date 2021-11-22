@@ -2,8 +2,10 @@ package kitchenpos.menu.ui;
 
 import kitchenpos.ControllerTest;
 import kitchenpos.menu.application.MenuService;
-import kitchenpos.menu.application.dto.*;
-import kitchenpos.menugroup.application.dto.MenuGroupResponse;
+import kitchenpos.menu.application.dto.MenuProductRequest;
+import kitchenpos.menu.application.dto.MenuProductResponse;
+import kitchenpos.menu.application.dto.MenuRequest;
+import kitchenpos.menu.application.dto.MenuResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -36,7 +38,7 @@ class MenuRestControllerTest extends ControllerTest {
     void create() throws Exception {
         final Long menuId = 1L;
         final MenuRequest request = new MenuRequest(MENU_NAME1, MENU_PRICE, MENU_GROUP_ID, Collections.singletonList(new MenuProductRequest(1L, 1)));
-        final MenuResponse response = new MenuResponse(menuId, MENU_NAME1, MENU_PRICE, MenuGroupResponse.of(createMenuGroup1()), MenuProductResponse.toList(Collections.singletonList(createMenuProduct(createProduct1()))));
+        final MenuResponse response = new MenuResponse(menuId, MENU_NAME1, MENU_PRICE, MENU_GROUP_ID, MenuProductResponse.toList(Collections.singletonList(createMenuProduct(createProduct1()))));
 
         when(menuService.create(any())).thenReturn(response);
 

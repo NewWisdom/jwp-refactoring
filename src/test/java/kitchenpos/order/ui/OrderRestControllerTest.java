@@ -1,10 +1,9 @@
 package kitchenpos.order.ui;
 
-import kitchenpos.order.application.OrderService;
-import kitchenpos.order.domain.OrderStatus;
-import kitchenpos.order.application.dto.*;
-import kitchenpos.table.application.dto.OrderTableResponse;
 import kitchenpos.ControllerTest;
+import kitchenpos.order.application.OrderService;
+import kitchenpos.order.application.dto.*;
+import kitchenpos.order.domain.OrderStatus;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -31,9 +30,8 @@ class OrderRestControllerTest extends ControllerTest {
     void create() throws Exception {
         final long orderId = 1L;
         final OrderRequest request = new OrderRequest(1L, Collections.singletonList(new OrderLineItemsRequest(1L, 2)));
-        final OrderResponse response = new OrderResponse(1L, new OrderTableResponse(1L, 10, false),
-                OrderStatus.COOKING.name(), LocalDateTime.now(),
-                Collections.singletonList(new OrderLineItemResponse(1L, 1L, 1)));
+        final OrderResponse response = new OrderResponse(1L, 1L, OrderStatus.COOKING.name(),
+                LocalDateTime.now(), Collections.singletonList(new OrderLineItemResponse(1L, 1L, 1)));
 
         when(orderService.create(any())).thenReturn(response);
 
@@ -48,9 +46,8 @@ class OrderRestControllerTest extends ControllerTest {
     @DisplayName("주문 목록을 조회할 수 있다.")
     @Test
     void list() throws Exception {
-        final List<OrderResponse> response = Collections.singletonList(new OrderResponse(1L, new OrderTableResponse(1L, 10, false),
-                OrderStatus.COOKING.name(), LocalDateTime.now(),
-                Collections.singletonList(new OrderLineItemResponse(1L, 1L, 1))));
+        final List<OrderResponse> response = Collections.singletonList(new OrderResponse(1L, 1L, OrderStatus.COOKING.name(),
+                LocalDateTime.now(), Collections.singletonList(new OrderLineItemResponse(1L, 1L, 1))));
 
         when(orderService.list()).thenReturn(response);
 
@@ -64,9 +61,8 @@ class OrderRestControllerTest extends ControllerTest {
     void changeOrderStatus() throws Exception {
         final Long orderId = 1L;
         final OrderStatusRequest request = new OrderStatusRequest(OrderStatus.MEAL.name());
-        final OrderResponse response = new OrderResponse(1L, new OrderTableResponse(1L, 10, false),
-                OrderStatus.MEAL.name(), LocalDateTime.now(),
-                Collections.singletonList(new OrderLineItemResponse(1L, 1L, 1)));
+        final OrderResponse response = new OrderResponse(1L, 1L, OrderStatus.MEAL.name(),
+                LocalDateTime.now(), Collections.singletonList(new OrderLineItemResponse(1L, 1L, 1)));
 
         when(orderService.changeOrderStatus(any(), any())).thenReturn(response);
 

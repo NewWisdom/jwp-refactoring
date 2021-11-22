@@ -41,7 +41,7 @@ public class OrderService {
         if (orderTable.isEmpty()) {
             throw new IllegalArgumentException("빈 테이블의 주문은 생성할 수 없습니다.");
         }
-        final Order order = new Order(orderTable, OrderStatus.COOKING);
+        final Order order = new Order(orderTable.getId(), OrderStatus.COOKING);
         order.changeOrderLineItems(orderLineItems);
         final Order savedOrder = orderRepository.save(order);
         return OrderResponse.of(savedOrder);
