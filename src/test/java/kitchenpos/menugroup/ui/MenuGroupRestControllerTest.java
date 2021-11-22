@@ -1,9 +1,9 @@
-package kitchenpos.menu.ui;
+package kitchenpos.menugroup.ui;
 
 import kitchenpos.ControllerTest;
-import kitchenpos.menu.application.MenuGroupService;
-import kitchenpos.menu.application.dto.MenuGroupRequest;
-import kitchenpos.menu.application.dto.MenuGroupResponse;
+import kitchenpos.menugroup.application.MenuGroupService;
+import kitchenpos.menugroup.application.dto.MenuGroupRequest;
+import kitchenpos.menugroup.application.dto.MenuGroupResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -13,7 +13,7 @@ import org.springframework.http.MediaType;
 import java.util.Collections;
 import java.util.List;
 
-import static kitchenpos.MenuFixture.MENU_GROUP_NAME1;
+import static kitchenpos.MenuGroupFixture.MENU_GROUP_NAME1;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;

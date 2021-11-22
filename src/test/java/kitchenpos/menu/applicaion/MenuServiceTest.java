@@ -6,7 +6,7 @@ import kitchenpos.menu.application.dto.MenuProductRequest;
 import kitchenpos.menu.application.dto.MenuRequest;
 import kitchenpos.menu.application.dto.MenuResponse;
 import kitchenpos.menu.domain.Menu;
-import kitchenpos.menu.domain.MenuGroup;
+import kitchenpos.menugroup.domain.MenuGroup;
 import kitchenpos.product.domain.Product;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -21,6 +21,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static kitchenpos.MenuFixture.*;
+import static kitchenpos.MenuGroupFixture.createMenuGroup1;
+import static kitchenpos.MenuGroupFixture.createMenuGroup2;
 import static kitchenpos.ProductFixture.createProduct1;
 import static kitchenpos.ProductFixture.createProduct2;
 import static org.assertj.core.api.Assertions.assertThat;

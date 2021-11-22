@@ -2,15 +2,14 @@ package kitchenpos.table.application;
 
 import kitchenpos.EntityManagerSupport;
 import kitchenpos.menu.domain.Menu;
-import kitchenpos.menu.domain.MenuGroup;
+import kitchenpos.menugroup.domain.MenuGroup;
 import kitchenpos.order.domain.OrderStatus;
-import kitchenpos.table.domain.OrderTable;
-import kitchenpos.table.domain.TableGroup;
 import kitchenpos.product.domain.Product;
-import kitchenpos.table.application.TableGroupService;
 import kitchenpos.table.application.dto.OrderTableIdRequest;
 import kitchenpos.table.application.dto.TableGroupRequest;
 import kitchenpos.table.application.dto.TableGroupResponse;
+import kitchenpos.table.domain.OrderTable;
+import kitchenpos.table.domain.TableGroup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -21,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import static kitchenpos.MenuFixture.createMenu1;
-import static kitchenpos.MenuFixture.createMenuGroup1;
+import static kitchenpos.MenuGroupFixture.createMenuGroup1;
 import static kitchenpos.OrderFixture.createOrder;
 import static kitchenpos.OrderFixture.createOrderLineItem;
 import static kitchenpos.ProductFixture.createProduct1;

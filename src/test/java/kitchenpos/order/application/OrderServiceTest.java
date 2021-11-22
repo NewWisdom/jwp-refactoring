@@ -2,12 +2,11 @@ package kitchenpos.order.application;
 
 import kitchenpos.EntityManagerSupport;
 import kitchenpos.menu.domain.Menu;
-import kitchenpos.menu.domain.MenuGroup;
+import kitchenpos.menugroup.domain.MenuGroup;
 import kitchenpos.order.domain.Order;
 import kitchenpos.order.domain.OrderStatus;
 import kitchenpos.table.domain.OrderTable;
 import kitchenpos.product.domain.Product;
-import kitchenpos.order.application.OrderService;
 import kitchenpos.order.application.dto.OrderLineItemsRequest;
 import kitchenpos.order.application.dto.OrderRequest;
 import kitchenpos.order.application.dto.OrderResponse;
@@ -23,6 +22,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import static kitchenpos.MenuFixture.*;
+import static kitchenpos.MenuGroupFixture.createMenuGroup1;
+import static kitchenpos.MenuGroupFixture.createMenuGroup2;
 import static kitchenpos.OrderFixture.createOrder;
 import static kitchenpos.OrderFixture.createOrderLineItem;
 import static kitchenpos.ProductFixture.createProduct1;

@@ -1,17 +1,16 @@
-package kitchenpos.menu.applicaion;
+package kitchenpos.menugroup.application;
 
 import kitchenpos.EntityManagerSupport;
-import kitchenpos.menu.application.MenuGroupService;
-import kitchenpos.menu.application.dto.MenuGroupRequest;
-import kitchenpos.menu.application.dto.MenuGroupResponse;
-import kitchenpos.menu.domain.MenuGroup;
+import kitchenpos.menugroup.application.dto.MenuGroupRequest;
+import kitchenpos.menugroup.application.dto.MenuGroupResponse;
+import kitchenpos.menugroup.domain.MenuGroup;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static kitchenpos.MenuFixture.*;
+import static kitchenpos.MenuGroupFixture.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 

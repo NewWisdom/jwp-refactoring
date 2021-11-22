@@ -3,6 +3,7 @@ package kitchenpos.menu.ui;
 import kitchenpos.ControllerTest;
 import kitchenpos.menu.application.MenuService;
 import kitchenpos.menu.application.dto.*;
+import kitchenpos.menugroup.application.dto.MenuGroupResponse;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,6 +15,8 @@ import java.util.Collections;
 import java.util.List;
 
 import static kitchenpos.MenuFixture.*;
+import static kitchenpos.MenuGroupFixture.createMenuGroup1;
+import static kitchenpos.MenuGroupFixture.createMenuGroup2;
 import static kitchenpos.ProductFixture.createProduct1;
 import static kitchenpos.ProductFixture.createProduct2;
 import static org.mockito.ArgumentMatchers.any;
