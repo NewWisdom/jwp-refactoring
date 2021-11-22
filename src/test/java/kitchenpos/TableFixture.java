@@ -1,10 +1,7 @@
 package kitchenpos;
 
-import kitchenpos.domain.order.OrderTable;
-import kitchenpos.domain.order.TableGroup;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import kitchenpos.table.domain.OrderTable;
+import kitchenpos.table.domain.TableGroup;
 
 public class TableFixture {
 

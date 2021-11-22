@@ -1,14 +1,14 @@
 package kitchenpos;
 
-import kitchenpos.domain.order.OrderTable;
-import kitchenpos.domain.menu.Menu;
-import kitchenpos.domain.order.Order;
-import kitchenpos.domain.order.OrderLineItem;
-import kitchenpos.domain.order.OrderStatus;
+import kitchenpos.table.domain.OrderTable;
+import kitchenpos.menu.domain.Menu;
+import kitchenpos.order.domain.Order;
+import kitchenpos.order.domain.OrderLineItem;
+import kitchenpos.order.domain.OrderStatus;
 
 import java.util.List;
 
-import static kitchenpos.domain.order.OrderStatus.MEAL;
+import static kitchenpos.order.domain.OrderStatus.MEAL;
 
 public class OrderFixture {
 
