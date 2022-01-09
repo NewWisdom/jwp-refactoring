@@ -75,7 +75,7 @@ class MenuServiceTest extends EntityManagerSupport {
         @DisplayName("메뉴 가격이 메뉴 상품 가격의 총합보다 클 수 없다.")
         @Test
         void createExceptionIfExceedPrice() {
-            request = new MenuRequest(MENU_NAME1, BigDecimal.valueOf(100000), menuGroup1.getId(), Arrays.asList(new MenuProductRequest(product1.getId(), 1), new MenuProductRequest(product2.getId(), 2)));
+            request = new MenuRequest(MENU_NAME1, BigDecimal.valueOf(100000000), menuGroup1.getId(), Arrays.asList(new MenuProductRequest(product1.getId(), 1), new MenuProductRequest(product2.getId(), 2)));
 
             assertThatThrownBy(() -> menuService.create(request))
                     .isInstanceOf(IllegalArgumentException.class);

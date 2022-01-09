@@ -1,5 +1,7 @@
 package kitchenpos.menu.application.dto;
 
+import kitchenpos.menu.domain.MenuProduct;
+
 import javax.validation.constraints.NotNull;
 
 public class MenuProductRequest {
@@ -19,5 +21,9 @@ public class MenuProductRequest {
 
     public long getQuantity() {
         return quantity;
+    }
+
+    public MenuProduct toEntity() {
+        return new MenuProduct(productId, quantity);
     }
 }

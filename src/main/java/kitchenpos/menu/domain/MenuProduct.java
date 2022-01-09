@@ -28,10 +28,6 @@ public class MenuProduct {
         return seq;
     }
 
-    public void changeMenu(Menu menu) {
-//        this.menu = menu;
-    }
-
     public long getQuantity() {
         return quantity;
     }
@@ -39,5 +35,9 @@ public class MenuProduct {
     public BigDecimal getAmount() {
 //        return product.getAmount(quantity);
         return null;
+    }
+
+    public Long getProductId() {
+        return productId;
     }
 }

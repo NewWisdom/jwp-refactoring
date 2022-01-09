@@ -7,12 +7,13 @@ import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Embeddable
 public class MenuProducts {
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="menu_id")
+    @JoinColumn(name = "menu_id")
     private List<MenuProduct> menuProducts = new ArrayList<>();
 
     public MenuProducts() {
@@ -40,5 +41,11 @@ public class MenuProducts {
 
     public List<MenuProduct> getMenuProducts() {
         return menuProducts;
+    }
+
+    public List<Long> getProductIds() {
+        return menuProducts.stream()
+                .map(MenuProduct::getProductId)
+                .collect(Collectors.toList());
     }
 }

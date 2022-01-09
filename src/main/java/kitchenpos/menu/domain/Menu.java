@@ -18,7 +18,7 @@ public class Menu {
     @Embedded
     private MenuPrice price;
 
-//    @Column(nullable = false)
+    @Column(nullable = false)
     private Long menuGroupId;
 
     @Embedded
@@ -33,6 +33,15 @@ public class Menu {
 
     public Menu(String name, BigDecimal price, Long menuGroupId, List<MenuProduct> menuProducts) {
         this(name, new MenuPrice(price), menuGroupId, new MenuProducts(menuProducts));
+    }
+
+    public Menu(String name, BigDecimal price, Long menuGroupId, List<MenuProduct> menuProducts, MenuValidator validator) {
+        validator.validateMenuGroup(menuGroupId);
+        validator.validateMenuProducts(menuProducts);
+        this.name = name;
+        this.price = new MenuPrice(price);
+        this.menuGroupId = menuGroupId;
+        this.menuProducts = new MenuProducts(menuProducts);
     }
 
     public Menu(String name, MenuPrice price, Long menuGroupId, MenuProducts menuProducts) {
@@ -64,5 +73,17 @@ public class Menu {
 
     public List<MenuProduct> getMenuProducts() {
         return menuProducts.getMenuProducts();
+    }
+
+    public void validatePrice() {
+        final List<MenuProduct> menuProducts = this.menuProducts.getMenuProducts();
+        BigDecimal sum = BigDecimal.ZERO;
+        for (final MenuProduct menuProduct : menuProducts) {
+            final BigDecimal amount = menuProduct.getAmount();
+            sum = sum.add(amount);
+        }
+        if (price.compareTo(sum) > 0) {
+            throw new IllegalArgumentException("메뉴 가격이 메뉴 상품들 가격의 총합보다 클 수 없습니다.");
+        }
     }
 }
